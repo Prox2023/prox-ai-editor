@@ -9,8 +9,8 @@
  * Domain Path: /languages
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * @package Prox_Ai_Editor
  *
+ * @package Prox_Ai_Editor
  */
 
 /**
@@ -22,13 +22,18 @@
  * @Author Marcel Santing
  * @Email marcel@prox-web.nl
  */
-class Prox_Ai_Editor {
+class ProxAiEditor {
 
-    /**
-     * @var Prox_Ai_Editor The single instance of the class
-     */
+	/**
+	 * The instance of the Prox Ai Editor.
+	 *
+	 * @var $instance ProxAiEditor The single instance of the class
+	 */
 	private static $instance;
 
+	/**
+	 * The constructor for the Prox Ai Editor.
+	 */
 	public function __construct() {
 	}
 
@@ -36,11 +41,11 @@ class Prox_Ai_Editor {
 	/**
 	 * Returns the instance of the Prox Ai Editor
 	 *
-	 * @return Prox_Ai_Editor
+	 * @return ProxAiEditor
 	 */
-	public static function instance(): Prox_Ai_Editor {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Prox_Ai_Editor ) ) {
-			self::$instance = new Prox_Ai_Editor();
+	public static function instance(): ProxAiEditor {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof ProxAiEditor ) ) {
+			self::$instance = new ProxAiEditor();
 			self::$instance->setup_constants();
 			self::$instance->includes();
 			self::$instance->init_hooks();
@@ -82,6 +87,11 @@ class Prox_Ai_Editor {
 		require_once PROX_AI_EDITOR_PATH . 'class-prox-admin.php';
 	}
 
+	/**
+	 * Initializes the hooks for the Prox Ai Editor.
+	 *
+	 * @return void
+	 */
 	private function init_hooks() {
 		add_action( 'admin_menu', array( $this, 'prox_ai_settings_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_prox_ai_scripts' ) );
@@ -127,7 +137,12 @@ class Prox_Ai_Editor {
 	}
 }
 
-function PROX(): Prox_Ai_Editor {
-	return Prox_Ai_Editor::instance();
+/**
+ * Returns the instance of the Prox Ai Editor.
+ *
+ * @return ProxAiEditor
+ */
+function PROX(): ProxAiEditor {
+	return ProxAiEditor::instance();
 }
 add_action( 'plugins_loaded', 'PROX', 8 );
