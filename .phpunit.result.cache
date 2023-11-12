@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"SampleTest::test_sample":0.142,"CoreTest::test_singleton_instance":0.143,"CoreTest::test_constants_setup":0.021,"CoreTest::test_includes":0.01,"CoreTest::test_admin_menu_hook":0.021,"CoreTest::test_display_prox_settings":0.021}}

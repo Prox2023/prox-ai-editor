@@ -1,0 +1,14 @@
+{
+  "name": "prox-ai-editor",
+  "version": "1.0.0",
+  "description": "Client side scripting for the WordPress Backend",
+  "main": "index.js",
+  "scripts": {
+    "test":"wp-env run tests-cli --env-cwd=wp-content/plugins/prox-ai-editor vendor/bin/phpunit",
+    "composer": "wp-env run cli --env-cwd=wp-content/plugins/prox-ai-editor composer",
+    "phpcs": "wp-env run cli --env-cwd=wp-content/plugins/prox-ai-editor vendor/bin/phpcs",
+    "phpcbf": "wp-env run cli --env-cwd=wp-content/plugins/prox-ai-editor vendor/bin/phpcbf"
+  },
+  "author": "",
+  "license": "ISC"
+}
