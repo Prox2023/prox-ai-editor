@@ -1,14 +1,20 @@
 <?php
 /**
- * Plugin Name: Prox AI Editor
- * Description: An assistant for reviewing your text and giving you suggestions
+ * Plugin Name: Prox AI Editor.
+ * Description: An assistant for reviewing your text and giving you suggestions.
  * Version: 1.0
  * Author: Marcel Santing
+ * Author URI: https://prox-web.nl
+ * Text Domain: prox-ai-editor
+ * Domain Path: /languages
+ * License: GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * @package Prox_Ai_Editor
+ *
  */
 
-
 /**
- * The main class for the Prox Ai Editor
+ * The main class for the Prox Ai Editor.
  *
  * @package Prox_Ai_Editor
  * @since 1.0
@@ -18,7 +24,11 @@
  */
 class Prox_Ai_Editor {
 
+    /**
+     * @var Prox_Ai_Editor The single instance of the class
+     */
 	private static $instance;
+
 	public function __construct() {
 	}
 
@@ -61,7 +71,7 @@ class Prox_Ai_Editor {
 	}
 
 	/**
-	 * Includes the files for the Prox Ai Editor
+	 * Includes the files for the Prox Ai Editor.
 	 *
 	 * @since 1.0
 	 * @version 1.0
@@ -74,21 +84,21 @@ class Prox_Ai_Editor {
 
 	private function init_hooks() {
 		add_action( 'admin_menu', array( $this, 'prox_ai_settings_page' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'load_prox_ai_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'load_prox_ai_scripts' ) );
 	}
 
 	/**
-	 * Adds the settings page for Prox Ai
+	 * Adds the settings page for Prox Ai.
 	 *
 	 * @return void
 	 */
 	public function prox_ai_settings_page() {
 		add_options_page(
-			'Prox AI Editor Setting', // Page title
-			'Prox Settings',     // Menu title
-			'manage_options',     // Capability
-			'prox-ai-settings',     // Menu slug
-			array( $this, 'display_prox_settings' ) // Callback function
+			'Prox AI Editor Setting', // Page title.
+			'Prox Settings',     // Menu title.
+			'manage_options',     // Capability.
+			'prox-ai-settings',     // Menu slug.
+			array( $this, 'display_prox_settings' ) // Callback function.
 		);
 	}
 
@@ -98,23 +108,23 @@ class Prox_Ai_Editor {
 	 * @return void
 	 */
 	public function display_prox_settings() {
-		// HTML and PHP code to display your settings
+		// HTML and PHP code to display your settings.
 		echo '<div id="prox-ai-editor-app" class="prox-wrap"></div>';
 	}
 
-    /**
-     * Load scripts and styles for the Prox AI settings page.
-     */
-    public function load_prox_ai_scripts($hook) {
-        // Check if we're on the Prox AI settings page
-        if( 'settings_page_prox-ai-settings' !== $hook ) {
-            return;
-        }
+	/**
+	 * Load scripts and styles for the Prox AI settings page.
+	 */
+	public function load_prox_ai_scripts( $hook ) {
+		// Check if we're on the Prox AI settings page.
+		if ( 'settings_page_prox-ai-settings' !== $hook ) {
+			return;
+		}
 
-        // Enqueue React and CSS assets
-        wp_enqueue_script( 'prox-ai-react-app', PROX_AI_EDITOR_URL . 'dist/bundle.js', array(), PROX_AI_EDITOR_VERSION, true );
-        wp_enqueue_style( 'prox-ai-styles', PROX_AI_EDITOR_URL . 'dist/main.css', array(), PROX_AI_EDITOR_VERSION );
-    }
+		// Enqueue React and CSS assets.
+		wp_enqueue_script( 'prox-ai-react-app', PROX_AI_EDITOR_URL . 'dist/bundle.js', array(), PROX_AI_EDITOR_VERSION, true );
+		wp_enqueue_style( 'prox-ai-styles', PROX_AI_EDITOR_URL . 'dist/main.css', array(), PROX_AI_EDITOR_VERSION );
+	}
 }
 
 function PROX(): Prox_Ai_Editor {
