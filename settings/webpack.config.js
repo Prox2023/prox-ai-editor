@@ -27,7 +27,19 @@ module.exports = {
                     'sass-loader'  // Compiles Sass to CSS
                 ],
             },
+            // Rule for JavaScript and JSX
+            {
+                test: /\.(js|jsx)$/, // Target js and jsx files
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
         ],
+    },
+    // Optional: Resolve .jsx extension
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     plugins: [
         // Plugin for extracting CSS into separate files

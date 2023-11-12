@@ -99,7 +99,7 @@ class Prox_Ai_Editor {
 	 */
 	public function display_prox_settings() {
 		// HTML and PHP code to display your settings
-		echo '<div class="prox-wrap"></div>';
+		echo '<div id="prox-ai-editor-app" class="prox-wrap"></div>';
 	}
 
     /**
