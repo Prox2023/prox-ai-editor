@@ -74,6 +74,7 @@ class Prox_Ai_Editor {
 
 	private function init_hooks() {
 		add_action( 'admin_menu', array( $this, 'prox_ai_settings_page' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'load_prox_ai_scripts' ) );
 	}
 
 	/**
@@ -100,6 +101,20 @@ class Prox_Ai_Editor {
 		// HTML and PHP code to display your settings
 		echo '<div class="prox-wrap"></div>';
 	}
+
+    /**
+     * Load scripts and styles for the Prox AI settings page.
+     */
+    public function load_prox_ai_scripts($hook) {
+        // Check if we're on the Prox AI settings page
+        if( 'settings_page_prox-ai-settings' !== $hook ) {
+            return;
+        }
+
+        // Enqueue React and CSS assets
+        wp_enqueue_script( 'prox-ai-react-app', PROX_AI_EDITOR_URL . 'dist/bundle.js', array(), PROX_AI_EDITOR_VERSION, true );
+        wp_enqueue_style( 'prox-ai-styles', PROX_AI_EDITOR_URL . 'dist/main.css', array(), PROX_AI_EDITOR_VERSION );
+    }
 }
 
 function PROX(): Prox_Ai_Editor {
